@@ -1,3 +1,20 @@
+```bash
+git clone https://github.com/elcreator/aimeos.git
+cd aimeos
+docker.exe compose -f docker-compose.demo.yml up -d
+```
+
+On first startup it initializes the database and demo data. Then open http://localhost:8088/admin and sign in with:
+
+```
+Email: admin@example.com
+Password: AimeosDemo2026
+```
+
+Shop frontend:
+
+http://localhost:8088/en/default/shop/best-sellers~2
+
 <p align="center">
     <a href="https://aimeos.org/">
         <img src="https://aimeos.org/fileadmin/template/icons/logo.png" alt="Aimeos logo" title="Aimeos" align="center" />
