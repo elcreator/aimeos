@@ -44,6 +44,18 @@ Route::group($conf ?? [], function() {
     require __DIR__.'/auth.php';
 });
 
+$basketRoute = config('shop.routes.basket');
+$basketRoute['prefix'] = rtrim(preg_replace('~/shop/?$~', '', $basketRoute['prefix'] ?? ''), '/');
+Route::group($basketRoute, function() {
+    Route::match(['GET', 'POST'], 'basket-fragment', [
+        \App\Http\Controllers\BasketFragmentController::class,
+        'indexAction',
+    ])->where([
+        'locale' => '[a-z]{2}(\_[A-Z]{2})?',
+        'site' => '[A-Za-z0-9\.\-]+',
+    ])->name('aimeos_shop_basket_fragment');
+});
+
 if( env( 'SHOP_MULTIROUTE' ) )
 {
     Route::group( $conf + ['middleware' => ['web']], function() {
